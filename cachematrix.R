@@ -1,11 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+## This function returns a list of the following objects:
+## set - sets the value of the matrix
+## get - get the value of matrix
+## setinverse - set the inverse of matrix
+## getinverse - get the inverse of matrix
 
 makeCacheMatrix <- function(x = matrix()) {
         m <- NULL
-        
         set <- function(y) {
             x <<- y
             m <<- NULL
@@ -14,7 +14,6 @@ makeCacheMatrix <- function(x = matrix()) {
         get <- function() x
         setinverse <- function(inverse) m <<- inverse
         getinverse <- function() m
-        print(set)
 
         list(set = set, get = get,
              setinverse = setinverse,
@@ -22,7 +21,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## This function check the inverse of a particular square matrix
+## in the makeCacheMatrix function and returns the inverse,
+## otherwise compute the inverse of a square matrix,set the cache inverse
+## and returns the inverse of a square matrix
 
 cacheSolve <- function(x, ...) {
 
@@ -33,10 +35,6 @@ cacheSolve <- function(x, ...) {
         }
         
         data <- x$get()
-        m <- solve(data, ...)
+        m <- solve(data)
         x$setinverse(m)
-
 }
-x <- makeCacheMatrix(matrix(1:10, nrow = 2, ncol = 2))
-print(cacheSolve(x))
-
